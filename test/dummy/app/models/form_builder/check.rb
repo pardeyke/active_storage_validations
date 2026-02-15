@@ -14,7 +14,7 @@ class FormBuilder::Check < ApplicationRecord
   validates :with_symbol, content_type: :png
 
   has_one_attached :in_array
-  validates :in_array, content_type: [:png, :gif]
+  validates :in_array, content_type: [ :png, :gif ]
 
   has_one_attached :with_string_mime
   validates :with_string_mime, content_type: "image/png"
