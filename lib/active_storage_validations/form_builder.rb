@@ -28,6 +28,9 @@ module ActiveStorageValidations
             type.include?("/") ? type : Marcel::MimeType.for(declared_type: type, extension: type)
           when Symbol
             Marcel::MimeType.for(declared_type: type.to_s, extension: type.to_s)
+          when Regexp
+            match = type.source.match(/\A\\A([a-z]+)\\/\\.\\*\\z\z/)
+            "#{match[1]}/*" if match
           end
         end
       end.uniq
